@@ -1,11 +1,11 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" routerLink="/">Navbar</a>
     <div [ngbCollapse]="!isNavbarCollapsed" class="navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="currentUser">
           <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item" *ngIf="currentUser; else notShow">
@@ -13,7 +13,7 @@
           </li>
           <ng-template #notShow>
           <li class="nav-item">
-              <a class="nav-link" routerLink="login"> Log in <span class="sr-only">(current)</span></a>
+              <a class="nav-link" routerLink="login" (click)="isNavbarCollapsed = false"> Log in <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" routerLink="signup">Sign up <span class="sr-only">(current)</span></a>
@@ -26,7 +26,34 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
     </div>
-  </nav>
+  </nav> -->
+
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <button class="navbar-toggler navbar-toggler-right" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">Navbar</a>
+      <div class="collapse navbar-collapse" [ngbCollapse]="!isNavbarCollapsed" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/" *ngIf="currentUser" (click)="isNavbarCollapsed = false">Home <span
+                  class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item" *ngIf="currentUser; else notLoggedIn">
+                <a class="nav-link" (click)="logout()">Log out<span class="sr-only">(current)</span></a>
+              </li>
+            <ng-template #notLoggedIn>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/login" (click)="isNavbarCollapsed = false">Log in</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/signup" (click)="isNavbarCollapsed = false">Sign up</a>
+            </li>
+            </ng-template>
+          </ul>
+        </div>
+    </nav>
 
 <div class="container">
   <router-outlet></router-outlet>
