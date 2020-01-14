@@ -12,6 +12,7 @@ import { JwtInterceptor } from './utilities/jwt-interceptor';
 import { ErrorInterceptor } from './utilities/error-interceptor';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { ArtistProfileComponent } from './artist-profile/artist-profile.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     HomeComponent,
     LoginComponent,
     SignUpComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    ArtistProfileComponent
   ],
   imports: [
     BrowserModule,

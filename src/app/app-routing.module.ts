@@ -4,13 +4,15 @@ import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from './utilities/auth-guard';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { ArtistProfileComponent } from './artist-profile/artist-profile.component';
 
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignUpComponent },
-  { path: 'search', component: SearchBarComponent },
+  { path: 'search/artist', component: SearchBarComponent },
+  { path: 'artist/:id', component: ArtistProfileComponent },
 
   // otherwise redirect to home
   { path: '**', redirectTo: '' }

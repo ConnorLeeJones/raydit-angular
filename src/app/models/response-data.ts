@@ -1,7 +1,7 @@
 import { Artist } from './artist';
 
 export class ResponseData {
-    data: Artist[]
+    data: []
 
     constructor(){}
 

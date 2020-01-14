@@ -1,0 +1,13 @@
+<div *ngIf="artist">
+    <div>{{artist.name}}</div>
+    <img src="{{artist.picture_medium}}">
+</div>
+
+<div *ngIf="albums">
+    <ul>
+        <li *ngFor="let album of albums">
+          <h4>{{album.title}} </h4>
+          <img src="{{album.cover_small}}">
+        </li>
+      </ul>
+</div>
