@@ -11,7 +11,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './utilities/jwt-interceptor';
 import { ErrorInterceptor } from './utilities/error-interceptor';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
-import { SearchBarComponent } from './search-bar/search-bar.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
