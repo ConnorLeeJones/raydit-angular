@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Artist } from '../models/artist';
+import { Artist } from '../../models/artist';
 import { ActivatedRoute } from '@angular/router';
-import { SearchService } from '../services/search.service';
-import { Album } from '../models/album';
+import { SearchService } from '../../services/search.service';
+import { Album } from '../../models/album';
 
 
 
@@ -31,13 +31,14 @@ export class ArtistProfileComponent implements OnInit {
 
     this.searchService.getArtist(id).subscribe(artist => {
     this.artist = artist;
+    console.log(this.artist)
     });
 
     this.searchService.getAlbums(id).subscribe(album => {
       this.albums = album.data;
       });
 
-    console.log(this.artist)
+    
   }
 
 }
