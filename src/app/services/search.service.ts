@@ -46,6 +46,10 @@ export class SearchService {
     .get<ResponseData>(deezer_url + '/artist/' + id + '/albums', {headers: headerDict});
   }
 
+  postArtist(artist: Artist){
+    return this.http.post(`${environment.apiUrl}/artists`, artist);
+  }
+
 
 }
 

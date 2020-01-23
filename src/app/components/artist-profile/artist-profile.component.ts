@@ -28,17 +28,28 @@ export class ArtistProfileComponent implements OnInit {
 
   getProfile(){
     const id = +this.route.snapshot.paramMap.get('id');
+    console.log(id);
 
     this.searchService.getArtist(id).subscribe(artist => {
     this.artist = artist;
-    console.log(this.artist)
-    });
+    console.log(this.artist.name);
+    if(this.artist.name == 'Nan' || this.artist.name == null){
+      this.artist = null;
+    }
+    },
+    
+    error => { console.log('error');
+            this.artist = null;    
+  });
 
     this.searchService.getAlbums(id).subscribe(album => {
       this.albums = album.data;
-      });
+    });
+  }
 
-    
+  followArtist(){
+    console.log('bleh');
+    this.searchService.postArtist(this.artist).subscribe(res => console.log(res));
   }
 
 }
