@@ -14,6 +14,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { ArtistProfileComponent } from './components/artist-profile/artist-profile.component';
 import { CookieService } from 'ngx-cookie-service';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CookieService } from 'ngx-cookie-service';
     LoginComponent,
     SignUpComponent,
     SearchBarComponent,
-    ArtistProfileComponent
+    ArtistProfileComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
