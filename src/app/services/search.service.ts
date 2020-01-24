@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import { of} from 'rxjs';
+import { of, Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ResponseData } from '../models/response-data';
 import { environment } from 'src/environments/environment';
@@ -49,6 +49,16 @@ export class SearchService {
   postArtist(artist: Artist){
     return this.http.post(`${environment.apiUrl}/artists`, artist);
   }
+
+  getArtistsIdsByUser(id: number){
+    return this.http.get<number[]>(`${environment.apiUrl}/user/${id}/artists/ids`);
+  }
+
+  unfollowArtist(id: number){
+    return this.http.put(`${environment.apiUrl}/artist/${id}`, id);
+  }
+
+
 
 
 }

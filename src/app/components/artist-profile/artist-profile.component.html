@@ -1,9 +1,17 @@
 <div *ngIf="artist">
     <div>{{artist.name}}</div>
     <img src="{{artist.picture_medium}}">
-      <div>
+      <div *ngIf="!isFollowing; else following">
       <button class="btn btn-success" (click)="followArtist()">Follow</button>
     </div>
+
+    <ng-template #following>
+        <div>
+            <button class="btn btn-success" (click)="unfollowArtist()">Unfollow</button>
+          </div>
+    </ng-template>
+
+
 </div>
 
 

@@ -13,6 +13,7 @@ import { ErrorInterceptor } from './utilities/error-interceptor';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { ArtistProfileComponent } from './components/artist-profile/artist-profile.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ArtistProfileComponent } from './components/artist-profile/artist-profi
     NgbModule
   ],
   providers: [
+    CookieService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
