@@ -54,6 +54,10 @@ export class SearchService {
     return this.http.get<number[]>(`${environment.apiUrl}/user/${id}/artists/ids`);
   }
 
+  getArtistsByUser(id: number){
+    return this.http.get<Artist[]>(`${environment.apiUrl}/user/${id}/artists`);
+  }
+
   unfollowArtist(id: number){
     return this.http.put(`${environment.apiUrl}/artist/${id}`, id);
   }

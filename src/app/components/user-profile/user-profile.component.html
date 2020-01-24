@@ -1,0 +1,35 @@
+<div *ngIf="user" class="card mt-4">
+        <h4 class="card-header">{{user.username}}'s profile</h4>
+
+            <!-- <ul *ngIf="artists">
+                <li *ngFor="let artist of artists">
+                    <img src="{{artist.picture_small}}">
+
+                    <a routerLink="/artist/{{artist.id}}"> {{artist.name}} </a>
+                </li>
+            </ul> -->
+        <!-- </div> -->
+
+        <div *ngIf="artists; else noArtists" class="card-body">
+               <div> <h6>{{user.username}}'s artists:</h6></div>
+        <div class ="table-wrapper-scroll-y my-custom-scrollbar">
+        <table class="table table-bordered table-striped">
+                <tbody>
+                <tr *ngFor="let artist of artists">
+    
+                  <td><img src="{{artist.picture_small}}">
+                  </td>
+    
+                  <td><a routerLink="/artist/{{artist.id}}"> {{artist.name}} </a></td>
+                </tr>
+                </tbody>
+            </table>
+            </div>
+    </div>
+
+    <ng-template #noArtists>
+            <h6>{{user.username}} has not followed any artists yet.</h6>
+
+    </ng-template>
+
+</div>

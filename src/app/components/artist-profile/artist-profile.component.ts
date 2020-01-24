@@ -39,8 +39,6 @@ export class ArtistProfileComponent implements OnInit {
       console.log(this.artistIds);
       });
 
-
-    // const id = +this.route.snapshot.paramMap.get('id');
     console.log(this.id);
 
     this.searchService.getArtist(this.id).subscribe(artist => {

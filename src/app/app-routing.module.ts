@@ -5,6 +5,7 @@ import { AuthGuard } from './utilities/auth-guard';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { ArtistProfileComponent } from './components/artist-profile/artist-profile.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'signup', component: SignUpComponent },
   { path: 'search/artist', component: SearchBarComponent },
   { path: 'artist/:id', component: ArtistProfileComponent },
+  { path: 'user/:id', component: UserProfileComponent },
 
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
