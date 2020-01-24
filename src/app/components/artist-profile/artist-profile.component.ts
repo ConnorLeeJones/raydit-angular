@@ -4,6 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { SearchService } from '../../services/search.service';
 import { Album } from '../../models/album';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { Rating } from 'src/app/models/rating';
+import { RatingComponent } from '../rating/rating.component';
+import { UserService } from 'src/app/services/user.service';
 
 
 
@@ -23,7 +26,8 @@ export class ArtistProfileComponent implements OnInit {
 
 
   constructor(private searchService: SearchService,
-              private route: ActivatedRoute, private authService: AuthenticationService) { 
+              private route: ActivatedRoute, private authService: AuthenticationService,
+              private userService: UserService) { 
 
   }
 
@@ -48,7 +52,13 @@ export class ArtistProfileComponent implements OnInit {
     console.log(this.isFollowing);
     if(this.artist.name == 'Nan' || this.artist.name == null){
       this.artist = null;
+    // } else {
+    //   this.userService.getUserArtistRating(this.id).subscribe(rating =>  {
+    //     this.ratingComponent.currentRate = rating.rating;
+    //     });
+      // this.ratingComponent.currentRate 
     }
+    
     },
     
     error => { console.log('error');

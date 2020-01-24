@@ -4,6 +4,7 @@ import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
 import { Artist } from 'src/app/models/artist';
 import { SearchService } from 'src/app/services/search.service';
+import { Rating } from 'src/app/models/rating';
 
 @Component({
   selector: 'app-user-profile',
@@ -14,6 +15,7 @@ export class UserProfileComponent implements OnInit {
 
   user: User;
   artists: Artist[];
+  ratings: Rating[];
   id = +this.route.snapshot.paramMap.get('id');
 
 
@@ -29,6 +31,11 @@ export class UserProfileComponent implements OnInit {
       if (this.artists.length == 0){
         this.artists = null;
       }
+    });
+
+    this.userService.getUserRatings(this.id).subscribe(ratings => {
+      this.ratings = ratings;
+      console.log(ratings);
     });
   }
 
