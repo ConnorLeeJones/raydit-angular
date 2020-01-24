@@ -1,5 +1,6 @@
 <div *ngIf="artist">
     <div>{{artist.name}}</div>
+    <app-rating></app-rating>
     <img src="{{artist.picture_medium}}">
       <div *ngIf="!isFollowing; else following">
       <button class="btn btn-success" (click)="followArtist()">Follow</button>
