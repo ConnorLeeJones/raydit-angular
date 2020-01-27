@@ -2,6 +2,24 @@
         <h4 class="card-header">{{user.username}}'s profile</h4>
         <div *ngIf="ratings; else noArtists" class="card-body">
                <div> <h6>{{user.username}}'s ratings:</h6></div>
+                
+               <!-- <div class="row">
+                    <div class="col"> -->
+
+                            <!-- placement="bottom-right" -->
+                      <div ngbDropdown class="d-inline-block" > 
+                        <button class="btn btn-outline-dark" id="dropdownBasic1" ngbDropdownToggle>Sort</button>
+                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                          <button ngbDropdownItem (click)="sortByRating()">Rating</button>
+                          <button ngbDropdownItem (click)="sortByRecent()">Recent</button>
+                          <button ngbDropdownItem (click)="sortAlphabetically()">Name</button>
+
+                        </div>
+                      </div>
+                    <!-- </div>
+               </div> -->
+               
+
         <div class ="table-wrapper-scroll-y my-custom-scrollbar">
         <table class="table table-bordered table-striped table-dark">
                 <tbody>
@@ -15,12 +33,14 @@
     
                   <td>
                     <a routerLink="/artist/{{rating.artist.id}}"> {{rating.artist.name}} </a>
-                    <hr>
+                    <!-- <hr> -->
+                    <div>
                       <ngb-rating [(rate)]="rating.rating" [readonly]="true">
                             <ng-template let-fill="fill" let-index="index">
                                     <span class="star" [class.filled]="fill === 100">&#9733;</span>
                                   </ng-template>
                       </ngb-rating>
+                    </div>
                       
                     </td>
                 </tr>

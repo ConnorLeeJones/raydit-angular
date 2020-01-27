@@ -17,6 +17,7 @@ export class UserProfileComponent implements OnInit {
   artists: Artist[];
   ratings: Rating[];
   id = +this.route.snapshot.paramMap.get('id');
+  sortOptions = ["modifiedDate", "rating"];
 
 
   constructor(private userService: UserService,
@@ -25,13 +26,6 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getuserById(this.id).subscribe(user => this.user = user);
-    // this.searchService.getArtistsByUser(this.id).subscribe(artists => { 
-    //   this.artists = artists;
-    //   console.log(this.artists);
-    //   if (this.artists.length == 0){
-    //     this.artists = null;
-    //   }
-    // });
 
     this.userService.getUserRatings(this.id).subscribe(ratings => {
       this.ratings = ratings;
@@ -40,7 +34,6 @@ export class UserProfileComponent implements OnInit {
         this.ratings = null;
       }
       this.sortByRating();
-      // this.sortByRecent();
     });
   }
 
@@ -51,5 +44,11 @@ export class UserProfileComponent implements OnInit {
   sortByRecent(){
     this.ratings.sort((a,b) => <any>new Date(b.modifiedDate) - <any>new Date(a.modifiedDate));
   }
+
+  sortAlphabetically(){
+    this.ratings.sort((a,b)=>a.artist.name.localeCompare(b.artist.name));
+  }
+
+
 
 }
