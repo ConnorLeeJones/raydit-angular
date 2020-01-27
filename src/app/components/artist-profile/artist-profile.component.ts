@@ -67,6 +67,7 @@ export class ArtistProfileComponent implements OnInit {
 
     this.searchService.getAlbums(this.id).subscribe(album => {
       this.albums = album.data;
+      console.log(album.data);
     });
   }
 

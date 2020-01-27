@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { ResponseData } from '../models/response-data';
 import { environment } from 'src/environments/environment';
 import { Artist } from '../models/artist';
+import { Album } from '../models/album';
 
 const deezer_url = 'https://deezerdevs-deezer.p.rapidapi.com';
 const key = environment.apiKey;
@@ -44,6 +45,11 @@ export class SearchService {
   getAlbums(id: number){
     return this.http
     .get<ResponseData>(deezer_url + '/artist/' + id + '/albums', {headers: headerDict});
+  }
+
+  getAlbum(id: number){
+    return this.http
+    .get<Album>(deezer_url + '/album/' + id, {headers: headerDict});
   }
 
   postArtist(artist: Artist){

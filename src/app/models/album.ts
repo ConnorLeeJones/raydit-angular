@@ -1,5 +1,6 @@
 export class Album {
     id: number;
+    album_id: number;
     title: string;
     link: string;
     cover: string;

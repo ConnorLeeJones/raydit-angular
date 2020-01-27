@@ -18,22 +18,12 @@ export class RatingComponent implements OnInit {
   artist: Artist;
 
   ngOnInit() {
-    // this.currentRate = 2;
-    // this.userService.
     console.log(this.artist);
     this.userService.getUserArtistRating(this.artist.id).subscribe(rating =>  {
       this.currentRate = rating.rating;
       console.log(this.currentRate);
       });
   }
-
-  getRating(){
-    // this.userService.getUserArtistRating()
-  }
-
-  // rate(){
-  //   console.log(this.currentRate);
-  // }
 
   onRateChange(event: number) {
     if (!isNaN(event)){

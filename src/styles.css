@@ -50,9 +50,11 @@ html {
   }
   
   a {
-    color: rgb(51, 126, 122);
+    color: whitesmoke;
     display: inline;
+    text-decoration: underline;
   }
+ 
   
   button {
     box-shadow: none;
@@ -88,6 +90,10 @@ html {
   
   .file-input {
     width: 100%;
+  }
+
+  .nav-link {
+    color: whitesmoke;
   }
   
   .submit-btn {

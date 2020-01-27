@@ -1,0 +1,11 @@
+<div *ngIf="album">
+        <div class="card mt-4 bg-light">
+          <h4 class="card-header">{{album.title}}</h4>
+          <hr>
+          <div id="image"><img src="{{album.cover_medium}}"></div>
+          <hr>
+          <div>Your rating:</div>
+          <app-album-rating [album]="album"></app-album-rating>
+        </div>
+</div>
+      
