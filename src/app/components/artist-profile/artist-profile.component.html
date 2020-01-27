@@ -19,15 +19,15 @@
           <tr *ngFor="let album of albums">
 
             <td>
-              <!-- <a routerLink="/artist/{{rating.artist.id}}">  -->
+              <a routerLink="/album/{{album.id}}"> 
               <img src="{{album.cover_small}}">
-              <!-- </a> -->
+              </a>
             </td>
 
             <td>
-              <!-- <a routerLink="/artist/{{rating.artist.id}}">  -->
+              <a routerLink="/album/{{album.id}}"> 
               <div>{{album.title}} </div>
-              <!-- </a> -->
+              </a>
               <!-- <hr> -->
               <!-- <div>
                   <ngb-rating [(rate)]="rating.rating" [readonly]="true">

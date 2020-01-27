@@ -16,6 +16,9 @@ import { ArtistProfileComponent } from './components/artist-profile/artist-profi
 import { CookieService } from 'ngx-cookie-service';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { RatingComponent } from './components/rating/rating.component';
+import { AlbumProfileComponent } from './components/album-profile/album-profile.component';
+import { AlbumRatingComponent } from './components/album-rating/album-rating.component';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +29,9 @@ import { RatingComponent } from './components/rating/rating.component';
     SearchBarComponent,
     ArtistProfileComponent,
     UserProfileComponent,
-    RatingComponent
+    RatingComponent,
+    AlbumProfileComponent,
+    AlbumRatingComponent
   ],
   imports: [
     BrowserModule,
