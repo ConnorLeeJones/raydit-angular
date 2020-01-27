@@ -154,31 +154,19 @@ html {
   }
 
 
-  .background {
-    height: 100%;
-    width: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    z-index: -1;
-    position: absolute;
-  }
-
-
-  .background2 {
-    height: 100%;
-    width: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    z-index: -1;
-    position: absolute;
-  }
-
-
   #navHeader{
     color: lightseagreen;
     text-decoration: underline;
     text-decoration-color: rgb(191, 207, 191);
     margin-right: 20px;
+}
+
+
+.my-custom-scrollbar {
+  position: relative;
+  height: 500px;
+  overflow: auto;
+}
+.table-wrapper-scroll-y {
+  display: block;
 }

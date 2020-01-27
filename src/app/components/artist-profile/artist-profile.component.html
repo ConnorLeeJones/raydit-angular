@@ -1,27 +1,46 @@
 <div *ngIf="artist">
-    <div>{{artist.name}}</div>
+  <div class="card mt-4 bg-light">
+    <h4 class="card-header">{{artist.name}}</h4>
+    <hr>
+    <div id="image"><img src="{{artist.picture_medium}}"></div>
+    <hr>
+    <div>Your rating:</div>
     <app-rating [artist]="artist"></app-rating>
-    <img src="{{artist.picture_medium}}">
-      <div *ngIf="!isFollowing; else following">
-      <button class="btn btn-success" (click)="followArtist()">Follow</button>
+  </div>
+
+  <div class="card mt-4">
+    <h4 class="card-header">Albums by {{artist.name}}:</h4>
+
+
+
+    <div *ngIf="albums" class="table-wrapper-scroll-y my-custom-scrollbar">
+      <table class="table table-bordered table-striped table-dark">
+        <tbody>
+          <tr *ngFor="let album of albums">
+
+            <td>
+              <!-- <a routerLink="/artist/{{rating.artist.id}}">  -->
+              <img src="{{album.cover_small}}">
+              <!-- </a> -->
+            </td>
+
+            <td>
+              <!-- <a routerLink="/artist/{{rating.artist.id}}">  -->
+              <div>{{album.title}} </div>
+              <!-- </a> -->
+              <!-- <hr> -->
+              <!-- <div>
+                  <ngb-rating [(rate)]="rating.rating" [readonly]="true">
+                        <ng-template let-fill="fill" let-index="index">
+                                <span class="star" [class.filled]="fill === 100">&#9733;</span>
+                              </ng-template>
+                  </ngb-rating>
+                </div> -->
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-
-    <ng-template #following>
-        <div>
-            <button class="btn btn-success" (click)="unfollowArtist()">Unfollow</button>
-          </div>
-    </ng-template>
-
-
-</div>
-
-
-
-<div *ngIf="albums">
-    <ul>
-        <li *ngFor="let album of albums">
-          <h6>{{album.title}} </h6>
-          <img src="{{album.cover_small}}">
-        </li>
-      </ul>
+  </div>
 </div>
