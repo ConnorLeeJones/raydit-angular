@@ -18,6 +18,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { RatingComponent } from './components/rating/rating.component';
 import { AlbumProfileComponent } from './components/album-profile/album-profile.component';
 import { AlbumRatingComponent } from './components/album-rating/album-rating.component';
+import { UserArtistRatingsComponent } from './components/user-artist-ratings/user-artist-ratings.component';
+import { UserAlbumRatingsComponent } from './components/user-album-ratings/user-album-ratings.component';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { AlbumRatingComponent } from './components/album-rating/album-rating.com
     UserProfileComponent,
     RatingComponent,
     AlbumProfileComponent,
-    AlbumRatingComponent
+    AlbumRatingComponent,
+    UserArtistRatingsComponent,
+    UserAlbumRatingsComponent
   ],
   imports: [
     BrowserModule,
