@@ -1,0 +1,54 @@
+<div *ngIf="user" class="card mt-4 bg-light">
+    <div *ngIf="ratings?.length; else noAlbums" class="card-body">
+
+        <nav class="navbar navbar-light bg-light">
+            <span class="navbar-brand">Albums </span>
+            <div>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" ngbDropdown display="dynamic">
+                        <a class="nav-link" style="cursor: pointer" ngbDropdownToggle id="navbarDropdown2"
+                            role="button">
+                            Sort
+                        </a>
+                        <div ngbDropdownMenu aria-labelledby="navbarDropdown2" class="dropdown-menu">
+                            <a ngbDropdownItem (click)="sortByRating()">Rating</a>
+                            <a ngbDropdownItem (click)="sortByRecent()">Recent</a>
+                            <a ngbDropdownItem (click)="sortAlphabetically()">Name</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <hr>
+        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+            <table class="table table-bordered table-striped table-dark">
+                <tbody>
+                    <tr *ngFor="let rating of ratings">
+
+                        <td>
+                            <a routerLink="/album/{{rating.album.album_id}}">
+                                <img src="{{rating.album.cover_small}}">
+                            </a>
+                        </td>
+
+                        <td>
+                            <a routerLink="/album/{{rating.album.album_id}}"> {{rating.album.title}} </a>
+                            <div>
+                                <ngb-rating [(rate)]="rating.rating" [readonly]="true">
+                                    <ng-template let-fill="fill" let-index="index">
+                                        <span class="star" [class.filled]="fill === 100">&#9733;</span>
+                                    </ng-template>
+                                </ngb-rating>
+                            </div>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <ng-template #noAlbums>
+            <h6 class="card-header">{{user.username}} has not rated any albums yet.</h6>
+        </ng-template>
+</div>

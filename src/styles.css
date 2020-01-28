@@ -52,7 +52,7 @@ html {
   a {
     color: whitesmoke;
     display: inline;
-    text-decoration: underline;
+    /* text-decoration: underline; */
   }
  
   

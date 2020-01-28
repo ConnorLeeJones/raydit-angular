@@ -28,8 +28,13 @@ export class UserService {
         return this.http.get<Rating>(`${environment.apiUrl}/ratings/${id}`);
     }
 
+    getUserAlbumRating(id: number) {
+        return this.http.get<Rating>(`${environment.apiUrl}/album/ratings/${id}`);
+    }
+
+
     getUserAlbumRatings(id: number) {
-        return this.http.get<Rating[]>(`${environment.apiUrl}/album/ratings/${id}`);
+        return this.http.get<Rating[]>(`${environment.apiUrl}/user/${id}/album/ratings`);
     }
 
     rateArtist(id: number, artist: Artist) {
