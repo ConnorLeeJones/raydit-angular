@@ -5,7 +5,7 @@
     <div id="image"><img src="{{artist.picture_medium}}"></div>
     <hr>
     <div>Your rating:</div>
-    <app-rating [artist]="artist"></app-rating>
+    <app-rating *ngIf="artist" [artist]="artist"></app-rating>
   </div>
 
   <div class="card mt-4">

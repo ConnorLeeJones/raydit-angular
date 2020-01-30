@@ -11,9 +11,9 @@
                             Sort
                         </a>
                         <div ngbDropdownMenu aria-labelledby="navbarDropdown2" class="dropdown-menu">
-                            <a ngbDropdownItem (click)="sortByRating()">Rating</a>
-                            <a ngbDropdownItem (click)="sortByRecent()">Recent</a>
-                            <a ngbDropdownItem (click)="sortAlphabetically()">Name</a>
+                            <a ngbDropdownItem (click)="sort($event)">Rating</a>
+                            <a ngbDropdownItem (click)="sort($event)">Recent</a>
+                            <a ngbDropdownItem (click)="sort($event)">Name</a>
                         </div>
                     </li>
                 </ul>
@@ -22,7 +22,7 @@
         <hr>
 
         <div>
-            <ngb-pagination [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+            <ngb-pagination class="justify-content-center" [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
         </div> 
 
         <!-- <div class="table-wrapper-scroll-y my-custom-scrollbar"> -->

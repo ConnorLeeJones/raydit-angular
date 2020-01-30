@@ -15,14 +15,13 @@ export class UserArtistRatingsComponent implements OnInit {
   @Input()
   user: User;
 
-  // ratings: Rating[];
 
   page: number = 1;
-  // userId: number = 2;
   ratings: Array<any>;  
   pages: Array<number>;
   totalItems: number;
   itemsPerPage: number;
+  sortBy: string = '';
 
 
 
@@ -33,17 +32,8 @@ export class UserArtistRatingsComponent implements OnInit {
     this.getRatings();
   }
 
-  // getArtistRatings(){
-  //   this.userService.getUserRatings(this.id).subscribe(ratings => {
-  //     this.ratings = ratings;
-  //     if (this.ratings.length)
-  //       this.sortByRating();
-  //   });
-  // }
-
-
   getRatings(){
-    this.userService.getUserPaginatedArtists(this.id, this.page - 1).subscribe(data =>
+    this.userService.getUserPaginatedArtists(this.id, this.page - 1, this.sortBy).subscribe(data =>
       {console.log(data);
         this.ratings = data['content'];
         this.pages = new Array(data['totalPages']);
@@ -62,17 +52,29 @@ export class UserArtistRatingsComponent implements OnInit {
 
 
 
-  sortByRating(){
-    this.ratings.sort((a,b) => b.rating - a.rating);
+  sort($event: any){
+    let choice = $event['target']['text'];
+    console.log(choice);
+    if (choice === 'Recent')
+      this.sortBy = 'modifiedDate';
+    else if (choice === 'Rating')
+      this.sortBy = '';
+    else if (choice === 'Name')
+    this.sortBy = 'artist_name';
+    this.getRatings();
   }
 
-  sortByRecent(){
-    this.ratings.sort((a,b) => <any>new Date(b.modifiedDate) - <any>new Date(a.modifiedDate));
-  }
+  // sortByRating(){
+  //   this.ratings.sort((a,b) => b.rating - a.rating);
+  // }
 
-  sortAlphabetically(){
-    this.ratings.sort((a,b)=>a.artist.name.localeCompare(b.artist.name));
-  }
+  // sortByRecent(){
+  //   this.ratings.sort((a,b) => <any>new Date(b.modifiedDate) - <any>new Date(a.modifiedDate));
+  // }
+
+  // sortAlphabetically(){
+  //   this.ratings.sort((a,b)=>a.artist.name.localeCompare(b.artist.name));
+  // }
 
 
 }
