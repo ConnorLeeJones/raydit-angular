@@ -20,7 +20,6 @@ import { AlbumProfileComponent } from './components/album-profile/album-profile.
 import { AlbumRatingComponent } from './components/album-rating/album-rating.component';
 import { UserArtistRatingsComponent } from './components/user-artist-ratings/user-artist-ratings.component';
 import { UserAlbumRatingsComponent } from './components/user-album-ratings/user-album-ratings.component';
-import { JwPaginationComponent } from 'jw-angular-pagination';
 
 @NgModule({
   declarations: [
@@ -36,7 +35,6 @@ import { JwPaginationComponent } from 'jw-angular-pagination';
     AlbumRatingComponent,
     UserArtistRatingsComponent,
     UserAlbumRatingsComponent,
-    JwPaginationComponent
   ],
   imports: [
     BrowserModule,

@@ -1,60 +1,24 @@
-<div *ngIf="user" class="card mt-4 bg-light">
-    <div *ngIf="ratings?.length; else noArtists" class="card-body">
+<table *ngIf="ratings" class="table table-bordered table-striped table-dark">
+    <tbody>
+        <tr *ngFor="let rating of ratings">
 
-        <nav class="navbar navbar-light bg-light">
-            <span class="navbar-brand">Artists </span>
-            <div>
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item" ngbDropdown display="dynamic">
-                        <a class="nav-link" style="cursor: pointer" ngbDropdownToggle id="navbarDropdown2"
-                            role="button">
-                            Sort
-                        </a>
-                        <div ngbDropdownMenu aria-labelledby="navbarDropdown2" class="dropdown-menu">
-                            <a ngbDropdownItem (click)="sort($event)">Rating</a>
-                            <a ngbDropdownItem (click)="sort($event)">Recent</a>
-                            <a ngbDropdownItem (click)="sort($event)">Name</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <hr>
+            <td>
+                <a routerLink="/artist/{{rating.artist.id}}">
+                    <img src="{{rating.artist.picture_small}}">
+                </a>
+            </td>
 
-        <div>
-            <ngb-pagination class="justify-content-center" [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
-        </div> 
+            <td>
+                <a routerLink="/artist/{{rating.artist.id}}"> {{rating.artist.name}} </a>
+                <div>
+                    <ngb-rating [(rate)]="rating.rating" [readonly]="true">
+                        <ng-template let-fill="fill" let-index="index">
+                            <span class="star" [class.filled]="fill === 100">&#9733;</span>
+                        </ng-template>
+                    </ngb-rating>
+                </div>
 
-        <!-- <div class="table-wrapper-scroll-y my-custom-scrollbar"> -->
-            <table class="table table-bordered table-striped table-dark">
-                <tbody>
-                    <tr *ngFor="let rating of ratings">
-
-                        <td>
-                            <a routerLink="/artist/{{rating.artist.id}}">
-                                <img src="{{rating.artist.picture_small}}">
-                            </a>
-                        </td>
-
-                        <td>
-                            <a routerLink="/artist/{{rating.artist.id}}"> {{rating.artist.name}} </a>
-                            <div>
-                                <ngb-rating [(rate)]="rating.rating" [readonly]="true">
-                                    <ng-template let-fill="fill" let-index="index">
-                                        <span class="star" [class.filled]="fill === 100">&#9733;</span>
-                                    </ng-template>
-                                </ngb-rating>
-                            </div>
-
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        <!-- </div> -->
-    </div>
-
-    <ng-template #noArtists>
-            <h6 class="card-header">{{user.username}} has not rated any artists yet.</h6>
-        </ng-template>
-
-</div>
+            </td>
+        </tr>
+    </tbody>
+</table>
