@@ -20,7 +20,12 @@
             </div>
         </nav>
         <hr>
-        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+
+        <div>
+            <ngb-pagination [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div> 
+
+        <!-- <div class="table-wrapper-scroll-y my-custom-scrollbar"> -->
             <table class="table table-bordered table-striped table-dark">
                 <tbody>
                     <tr *ngFor="let rating of ratings">
@@ -45,7 +50,7 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
+        <!-- </div> -->
     </div>
 
     <ng-template #noArtists>

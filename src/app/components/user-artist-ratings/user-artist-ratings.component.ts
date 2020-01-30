@@ -15,22 +15,51 @@ export class UserArtistRatingsComponent implements OnInit {
   @Input()
   user: User;
 
-  ratings: Rating[];
+  // ratings: Rating[];
+
+  page: number = 1;
+  // userId: number = 2;
+  ratings: Array<any>;  
+  pages: Array<number>;
+  totalItems: number;
+  itemsPerPage: number;
+
+
 
 
   constructor(private userService: UserService) {}
 
   ngOnInit() {
-    this.getArtistRatings();
+    this.getRatings();
   }
 
-  getArtistRatings(){
-    this.userService.getUserRatings(this.id).subscribe(ratings => {
-      this.ratings = ratings;
-      if (this.ratings.length)
-        this.sortByRating();
-    });
+  // getArtistRatings(){
+  //   this.userService.getUserRatings(this.id).subscribe(ratings => {
+  //     this.ratings = ratings;
+  //     if (this.ratings.length)
+  //       this.sortByRating();
+  //   });
+  // }
+
+
+  getRatings(){
+    this.userService.getUserPaginatedArtists(this.id, this.page - 1).subscribe(data =>
+      {console.log(data);
+        this.ratings = data['content'];
+        this.pages = new Array(data['totalPages']);
+        this.totalItems = data['totalElements'];
+        this.itemsPerPage = data['size'];
+      },
+      (error) => console.log(error.error.message)
+      );
   }
+
+  loadPage($event: any){
+    console.log($event);
+    this.page = $event;
+    this.getRatings();
+  }
+
 
 
   sortByRating(){

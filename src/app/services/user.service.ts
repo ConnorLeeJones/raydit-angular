@@ -45,5 +45,9 @@ export class UserService {
         return this.http.post<Album>(`${environment.apiUrl}/album/ratings/${id}`, album);
     }
 
+    getUserPaginatedArtists(id: number, pageNo: number){
+        return this.http.get(`${environment.apiUrl}/test/ratings?id=` + id + '&pageNo=' + pageNo);
+    }
+
 
 }
