@@ -38,18 +38,18 @@ export class ArtistProfileComponent implements OnInit {
 
 
   getProfile(){
-    this.searchService.getArtistsIdsByUser(this.authService.currentUserValue.id).subscribe(ids => {
-      this.artistIds = ids;
-      console.log(this.artistIds);
-      });
+    // this.searchService.getArtistsIdsByUser(this.authService.currentUserValue.id).subscribe(ids => {
+    //   this.artistIds = ids;
+    //   console.log(this.artistIds);
+    //   });
 
-    console.log(this.id);
+    // console.log(this.id);
 
     this.searchService.getArtist(this.id).subscribe(artist => {
-    this.artist = artist;
-    console.log(this.artist.name);
-    this.isFollowing = this.isAlreadyFollowing();
-    console.log(this.isFollowing);
+      this.artist = artist;
+      console.log(this.artist.name);
+      // this.isFollowing = this.isAlreadyFollowing();
+      console.log(this.isFollowing);
     if(this.artist.name == 'Nan' || this.artist.name == null){
       this.artist = null;
     // } else {
@@ -61,9 +61,11 @@ export class ArtistProfileComponent implements OnInit {
     
     },
     
-    error => { console.log('error');
-            this.artist = null;    
-  });
+  //   error => { console.log('error');
+  //           this.artist = null;    
+  // }
+  );
+
 
     this.searchService.getAlbums(this.id).subscribe(album => {
       this.albums = album.data;
@@ -71,24 +73,24 @@ export class ArtistProfileComponent implements OnInit {
     });
   }
 
-  isAlreadyFollowing(){
-    return this.artistIds.includes(this.id);
-  }
+  // isAlreadyFollowing(){
+  //   return this.artistIds.includes(this.id);
+  // }
 
-  followArtist(){
-    console.log('bleh');
-    this.searchService.postArtist(this.artist).subscribe(res => {
-      console.log(res)
-      this.isFollowing = true;
-    });
-  }
+  // followArtist(){
+  //   console.log('bleh');
+  //   this.searchService.postArtist(this.artist).subscribe(res => {
+  //     console.log(res)
+  //     this.isFollowing = true;
+  //   });
+  // }
 
-  unfollowArtist(){
-    console.log('bleh');
-    this.searchService.unfollowArtist(this.id).subscribe(res => {
-      console.log(res);
-      this.isFollowing = false;
-    });
-  }
+  // unfollowArtist(){
+  //   console.log('bleh');
+  //   this.searchService.unfollowArtist(this.id).subscribe(res => {
+  //     console.log(res);
+  //     this.isFollowing = false;
+  //   });
+  // }
 
 }

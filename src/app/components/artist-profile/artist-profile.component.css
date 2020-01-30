@@ -5,3 +5,7 @@
 #image{
     align-self: center;
 }
+
+a {
+    text-decoration: underline;
+  }

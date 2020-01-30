@@ -1,21 +1,49 @@
-<nav *ngIf="user" class="navbar navbar-light bg-light">
-  <span class="navbar-brand">
-    <h6>{{user.username}}'s profile </h6>
-  </span>
-  <div>
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item" ngbDropdown display="dynamic">
+<div *ngIf="user" class="card mt-4 bg-light">
+  <div class="card-body">
+    <div>{{user.username}}'s profile</div>
+    <hr>
+
+    <nav class="navbar navbar-light bg-light">
+      <span class="navbar-brand nav-item" ngbDropdown display="dynamic">
         <a class="nav-link" style="cursor: pointer" ngbDropdownToggle id="navbarDropdown3" role="button">
           {{selected}}
         </a>
         <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu">
           <a ngbDropdownItem *ngFor="let option of options" (click)="getSelected($event)">{{option}}</a>
         </div>
-      </li>
-    </ul>
+      </span>
+      <div>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item" ngbDropdown display="dynamic">
+            <a class="nav-link" style="cursor: pointer" ngbDropdownToggle id="navbarDropdown2" role="button">
+              Sort
+            </a>
+            <div ngbDropdownMenu aria-labelledby="navbarDropdown2" class="dropdown-menu">
+              <a ngbDropdownItem (click)="sort($event)">Rating</a>
+              <a ngbDropdownItem (click)="sort($event)">Recent</a>
+              <a ngbDropdownItem (click)="sort($event)">Name</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <hr>
+
+
+    <div *ngIf="ratings?.length; else noRatings">
+      <div>
+        <ngb-pagination class="justify-content-center" [collectionSize]="totalItems" [pageSize]="itemsPerPage"
+          [(page)]="page" [maxSize]="3" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+      </div>
+
+      <app-user-artist-ratings *ngIf="showArtists()" [(ratings)]="ratings"></app-user-artist-ratings>
+      <app-user-album-ratings *ngIf="showAlbums()" [(ratings)]="ratings"></app-user-album-ratings>
+    </div>
   </div>
-</nav>
 
 
-<app-user-artist-ratings *ngIf="showArtists()" [(user)]="user" [(id)]="id"></app-user-artist-ratings>
-<app-user-album-ratings *ngIf="showAlbums()" [(user)]="user" [(id)]="id"></app-user-album-ratings>
+  <ng-template #noRatings>
+    <h6 class="card-header">{{user.username}} has not rated any {{selected.toLowerCase()}} yet.</h6>
+  </ng-template>
+
+</div>
