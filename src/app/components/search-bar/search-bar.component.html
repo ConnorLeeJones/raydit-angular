@@ -1,8 +1,18 @@
-<div class="form-group">
-  <label for="typeahead-http">Search for an Artist:</label>
-  <input id="typeahead-http" type="text" class="form-control" [class.is-invalid]="searchFailed" [(ngModel)]="model" [ngbTypeahead]="search" placeholder="Artist search" (ngSubmit)="onSubmit($event)" (selectItem)="onSubmit($event)"/>
-  <span *ngIf="searching">searching...</span>
-  <div class="invalid-feedback" *ngIf="searchFailed">Sorry, suggestions could not be loaded.</div>
+<div class="card mt-4 bg-light">
+  <div class="card-body">
+
+    <div class="form-group">
+      <label for="typeahead-http">Search for an Artist:</label>
+      <input id="typeahead-http" type="text" class="form-control" [class.is-invalid]="searchFailed" [(ngModel)]="model"
+        [ngbTypeahead]="search" placeholder="Artist search" (ngSubmit)="onSubmit($event)"
+        (selectItem)="onSubmit($event)" />
+      <span *ngIf="searching">searching...</span>
+      <div class="invalid-feedback" *ngIf="searchFailed">Sorry, suggestions could not be loaded.</div>
+    </div>
+
+    <hr>
+
+  </div>
 </div>
 
-<hr>
+<app-user-search></app-user-search>

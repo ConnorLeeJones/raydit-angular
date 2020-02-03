@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import { of, Observable} from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { ResponseData } from '../models/response-data';
 import { environment } from 'src/environments/environment';
 import { Artist } from '../models/artist';
 import { Album } from '../models/album';
+import { User } from '../models/user';
 
 const deezer_url = 'https://deezerdevs-deezer.p.rapidapi.com';
 const key = environment.apiKey;
@@ -66,6 +67,16 @@ export class SearchService {
 
   unfollowArtist(id: number){
     return this.http.put(`${environment.apiUrl}/artist/${id}`, id);
+  }
+
+  searchUsers(term: string){
+    console.log(term)
+
+    if (term.length < 3) {
+      return of([]);
+    }
+
+    return this.http.get<Artist[]>(`${environment.apiUrl}/users/search?searchTerm=` + term);
   }
 
 
