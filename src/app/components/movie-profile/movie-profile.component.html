@@ -1,0 +1,11 @@
+<div *ngIf="movie">
+        <div class="card mt-4 bg-light">
+          <h4 class="card-header">{{movie.title}}</h4>
+          <hr>
+          <div id="image"><img class="poster" src="{{movie.poster}}"></div>
+          <hr>
+          <div>Your rating:</div>
+          <app-movie-rating [movie]="movie"></app-movie-rating>
+        </div>
+</div>
+      

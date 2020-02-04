@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Rating } from '../models/rating';
 import { Artist } from '../models/artist';
 import { Album } from '../models/album';
+import { Movie } from '../models/movie';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -44,6 +45,21 @@ export class UserService {
     rateAlbum(id: number, album: Album) {
         return this.http.post<Album>(`${environment.apiUrl}/album/ratings/${id}`, album);
     }
+
+    rateMovie(id: number, movie: Movie) {
+        return this.http.post<Movie>(`${environment.apiUrl}/movies/ratings/${id}`, movie);
+    }
+
+    getUserMovieRating(id: string) {
+        return this.http.get<Rating>(`${environment.apiUrl}/movies/ratings/${id}`);
+    }
+
+
+    getUserMovieRatings(id: string) {
+        return this.http.get<Rating[]>(`${environment.apiUrl}/user/${id}/movies/ratings`);
+    }
+
+
 
     getUserPaginatedRatings(selected: string, id: number, pageNo: number, sortBy: string){
         return this.http.get(`${environment.apiUrl}/` + selected + `/ratings?id=` + id + '&pageNo=' + pageNo + '&sortBy=' + sortBy);

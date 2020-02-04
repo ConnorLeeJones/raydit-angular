@@ -7,6 +7,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { ArtistProfileComponent } from './components/artist-profile/artist-profile.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { AlbumProfileComponent } from './components/album-profile/album-profile.component';
+import { MovieProfileComponent } from './components/movie-profile/movie-profile.component';
 
 
 
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'search/artist', component: SearchBarComponent },
   { path: 'artist/:id', component: ArtistProfileComponent },
   { path: 'album/:id', component: AlbumProfileComponent },
+  { path: 'show/:id', component: MovieProfileComponent },
   { path: 'user/:id', component: UserProfileComponent },
 
 

@@ -8,13 +8,22 @@ import { Artist } from '../models/artist';
 import { Album } from '../models/album';
 import { User } from '../models/user';
 import { Rating } from '../models/rating';
+import { Movie } from '../models/movie';
 
 const deezer_url = 'https://deezerdevs-deezer.p.rapidapi.com';
+const imbd_url = 'https://imdb-internet-movie-database-unofficial.p.rapidapi.com';
 const key = environment.apiKey;
 const headerDict = {
   'x-rapidapi-host': 'deezerdevs-deezer.p.rapidapi.com',
-  'x-rapidapi-key': key,
+  'x-rapidapi-key': key
 }
+
+const imdbHeaders = {
+  'x-rapidapi-host': 'imdb-internet-movie-database-unofficial.p.rapidapi.com',
+  'x-rapidapi-key': environment.imdbKey
+}
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +65,10 @@ export class SearchService {
 
   postArtist(artist: Artist){
     return this.http.post(`${environment.apiUrl}/artists`, artist);
+  }
+
+  getMovie(id: string){
+    return this.http.get<Movie>(`${imbd_url}/film/${id}`, {headers: imdbHeaders});
   }
 
   getArtistsIdsByUser(id: number){

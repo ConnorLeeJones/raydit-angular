@@ -22,6 +22,9 @@ import { UserArtistRatingsComponent } from './components/user-artist-ratings/use
 import { UserAlbumRatingsComponent } from './components/user-album-ratings/user-album-ratings.component';
 import { UserSearchComponent } from './components/user-search/user-search.component';
 import { RecentRatingsComponent } from './components/recent-ratings/recent-ratings.component';
+import { UserMovieRatingsComponent } from './components/user-movie-ratings/user-movie-ratings.component';
+import { MovieProfileComponent } from './components/movie-profile/movie-profile.component';
+import { MovieRatingComponent } from './components/movie-rating/movie-rating.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +42,9 @@ import { RecentRatingsComponent } from './components/recent-ratings/recent-ratin
     UserAlbumRatingsComponent,
     UserSearchComponent,
     RecentRatingsComponent,
+    UserMovieRatingsComponent,
+    MovieProfileComponent,
+    MovieRatingComponent,
   ],
   imports: [
     BrowserModule,
