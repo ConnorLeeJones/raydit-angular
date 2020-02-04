@@ -1,0 +1,14 @@
+
+  .star {
+    font-size: 0.75rem;
+    color: #b0c4de;
+  }
+  .filled {
+    color: gold;
+  }
+
+  .float-right {
+    padding: 0;
+    float: right;
+    position: relative;
+}

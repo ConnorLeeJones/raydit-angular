@@ -22,6 +22,7 @@ export class UserProfileComponent implements OnInit {
   totalItems: number;
   itemsPerPage: number;
   sortBy: string = '';
+  loading = false;
 
 
   constructor(private userService: UserService,
@@ -42,7 +43,6 @@ export class UserProfileComponent implements OnInit {
     this.options.push(this.selected);
     this.selected = $event.target.innerText;
     this.switchSelection(this.selected);
-    console.log(this.showArtists())
   }
 
   switchSelection(option: string){
@@ -52,26 +52,36 @@ export class UserProfileComponent implements OnInit {
   }
 
   showArtists(){
-    return (this.ratings && this.ratings[0]['artist'] !== undefined)
+    return (this.ratings && this.ratings[0]['artist'])
   }
 
   showAlbums(){
-    return (this.ratings && this.ratings[0]['album'] !== undefined)
+    return (this.ratings && this.ratings[0]['album'])
   }
 
   getRatings(){
+    this.loading = true;
     this.userService.getUserPaginatedRatings(this.selected.toLocaleLowerCase(), this.id, this.page - 1, this.sortBy).subscribe(data =>
       {
         if (data !== null){
-        this.ratings = data['content'];
-        this.pages = new Array(data['totalPages']);
-        this.totalItems = data['totalElements'];
-        this.itemsPerPage = data['size'];
+          console.log(data);
+          this.ratings = data['content'];
+          this.pages = new Array(data['totalPages']);
+          this.totalItems = data['totalElements'];
+          this.itemsPerPage = data['size'];
+          console.log(this.pages);
+        } else {
+          console.log('bleh');
+          this.ratings = [];
+          console.log(this.ratings);
         }
+        this.loading = false;
+        console.log(this.loading);
       },
       (error) => {
         console.log(error.error.message)
-        this.ratings = null;
+        this.ratings = [];
+        this.loading = false;
       }
       );
   }

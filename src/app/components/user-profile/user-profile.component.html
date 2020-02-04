@@ -14,7 +14,7 @@
       </span>
       <div>
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item" ngbDropdown display="dynamic">
+          <li *ngIf="ratings?.length" class="nav-item" ngbDropdown display="dynamic">
             <a class="nav-link" style="cursor: pointer" ngbDropdownToggle id="navbarDropdown2" role="button">
               Sort
             </a>
@@ -29,18 +29,31 @@
     </nav>
     <hr>
 
-
+    <div *ngIf="!loading else loadingPage">
     <div *ngIf="ratings?.length; else noRatings">
       <div>
-        <ngb-pagination class="justify-content-center" [collectionSize]="totalItems" [pageSize]="itemsPerPage"
+        <ngb-pagination *ngIf="pages.length > 1" class="justify-content-center" [collectionSize]="totalItems" [pageSize]="itemsPerPage"
           [(page)]="page" [maxSize]="3" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
       </div>
 
+
+      <!-- <div *ngIf="!loading else loadingPage"> -->
       <app-user-artist-ratings *ngIf="showArtists()" [(ratings)]="ratings"></app-user-artist-ratings>
       <app-user-album-ratings *ngIf="showAlbums()" [(ratings)]="ratings"></app-user-album-ratings>
+      </div>
+
+    <!-- </div> -->
     </div>
   </div>
 
+  <ng-template #loadingPage>
+    <hr>
+      <div class="d-flex justify-content-center">
+          <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+  </ng-template>
 
   <ng-template #noRatings>
     <h6 class="card-header">{{user.username}} has not rated any {{selected.toLowerCase()}} yet.</h6>

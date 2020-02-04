@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { Artist } from '../models/artist';
 import { Album } from '../models/album';
 import { User } from '../models/user';
+import { Rating } from '../models/rating';
 
 const deezer_url = 'https://deezerdevs-deezer.p.rapidapi.com';
 const key = environment.apiKey;
@@ -67,6 +68,11 @@ export class SearchService {
 
   unfollowArtist(id: number){
     return this.http.put(`${environment.apiUrl}/artist/${id}`, id);
+  }
+
+  getRecentRatings(){
+    return this.http.get<Rating[]>(`${environment.apiUrl}/ratings/recent`);
+
   }
 
   searchUsers(term: string){

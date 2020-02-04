@@ -21,6 +21,7 @@ import { AlbumRatingComponent } from './components/album-rating/album-rating.com
 import { UserArtistRatingsComponent } from './components/user-artist-ratings/user-artist-ratings.component';
 import { UserAlbumRatingsComponent } from './components/user-album-ratings/user-album-ratings.component';
 import { UserSearchComponent } from './components/user-search/user-search.component';
+import { RecentRatingsComponent } from './components/recent-ratings/recent-ratings.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { UserSearchComponent } from './components/user-search/user-search.compon
     UserArtistRatingsComponent,
     UserAlbumRatingsComponent,
     UserSearchComponent,
+    RecentRatingsComponent,
   ],
   imports: [
     BrowserModule,
