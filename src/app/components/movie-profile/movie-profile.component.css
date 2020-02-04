@@ -1,0 +1,17 @@
+.poster {
+    height:250px;
+    width: auto;/*maintain aspect ratio*/
+    max-width:500px;
+}
+
+#thead {
+    text-align: center;
+}
+
+#image{
+    align-self: center;
+}
+
+a {
+    text-decoration: underline;
+  }

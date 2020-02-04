@@ -1,0 +1,24 @@
+<table *ngIf="ratings" class="table table-bordered table-striped table-dark">
+        <tbody>
+            <tr *ngFor="let rating of ratings">
+    
+                <td>
+                    <a routerLink="/artist/{{rating.artist.id}}">
+                        <img src="{{rating.poster}}">
+                    </a>
+                </td>
+    
+                <td>
+                    <a routerLink="/artist/{{rating.movie.id}}"> {{rating.movie.name}} </a>
+                    <div>
+                        <ngb-rating [(rate)]="rating.rating" [readonly]="true">
+                            <ng-template let-fill="fill" let-index="index">
+                                <span class="star" [class.filled]="fill === 100">&#9733;</span>
+                            </ng-template>
+                        </ngb-rating>
+                    </div>
+    
+                </td>
+            </tr>
+        </tbody>
+    </table>

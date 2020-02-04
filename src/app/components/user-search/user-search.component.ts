@@ -39,6 +39,7 @@ export class UserSearchComponent {
     );
   
     onSubmit($event: any){
+      console.log($event);
 
       this._service.searchUsers($event.item).subscribe(results =>
           {
