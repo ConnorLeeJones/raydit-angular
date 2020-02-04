@@ -8,6 +8,7 @@ export class Rating {
     album: Album;
     createdDate: Date;
     modifiedDate: Date;
+    
 
     constructor(){}
 }

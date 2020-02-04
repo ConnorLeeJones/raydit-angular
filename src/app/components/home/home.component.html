@@ -1,10 +1,6 @@
 <div class="card mt-4">
-    <h4 class="card-header">Welcome</h4>
+    <h4 class="card-header">Recent Artist ratings:</h4>
     <div class="card-body">
-        <h6>Users from secure api end point</h6>
-        <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
-        <ul *ngIf="users">
-            <li *ngFor="let user of users">{{user.username}}</li>
-        </ul>
+    <app-recent-ratings></app-recent-ratings>
     </div>
 </div>
