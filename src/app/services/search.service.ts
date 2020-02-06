@@ -88,6 +88,10 @@ export class SearchService {
 
   }
 
+  searchMovies(term: string){
+    return this.http.get<Movie[]>(`${imbd_url}/search/` + term, {headers: imdbHeaders});
+  }
+
   searchUsers(term: string){
     console.log(term)
 

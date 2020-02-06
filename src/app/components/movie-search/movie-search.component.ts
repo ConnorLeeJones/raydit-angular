@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { debounceTime, tap, switchMap, finalize } from 'rxjs/operators';
+import { debounceTime, tap, switchMap, finalize, distinctUntilChanged, map, catchError } from 'rxjs/operators';
+import { Artist } from 'src/app/models/artist';
+import { SearchService } from 'src/app/services/search.service';
+import { Router } from '@angular/router';
+import { Observable, of } from 'rxjs';
+import { Movie } from 'src/app/models/movie';
 
 @Component({
   selector: 'app-movie-search',
@@ -11,58 +16,51 @@ import { debounceTime, tap, switchMap, finalize } from 'rxjs/operators';
 
 
 
-export class MovieSearchComponent implements OnInit {
+export class MovieSearchComponent {
 
-  searchMoviesCtrl = new FormControl();
-  filteredMovies: any;
-  isLoading = false;
-  errorMsg: string;
+  model: any;
+  searching = false;
+  searchFailed = false;
+  results: Array<any>;
 
-  headerDict = {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Credentials": "true",
-    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,OPTIONS",
-    "Access-Control-Allow-Headers": "Authorization, Origin,X-Requested-With,Content-Type,Accept,content-type,application/json"
-  }
+  constructor(private _service: SearchService, private router: Router) {}
 
-  requestOptions = {                                                                                                                                                                                 
-    headers: new Headers(this.headerDict), 
-  };
+  // search = (text$: Observable<string>) =>
+  //   text$.pipe(
+  //     debounceTime(300),
+  //     distinctUntilChanged(),
+  //     tap(() => this.searching = true),
+  //     switchMap(term =>
+  //       this._service.searchMovies(term).pipe(
+  //         tap(() => this.searchFailed = false),
+  //         map((movies: Movie[]) => movies.map(movie => movie.title)),
+  //         catchError(() => {
+  //           this.searchFailed = true;
+  //           console.log('error')
+  //           return of([]);
+  //         }))
+  //     ),
+  //     tap(() => this.searching = false)
+  //   );
+  
+    onSubmit($event: any){
+      console.log($event);
+      this._service.searchMovies($event.item).subscribe(results =>
+          {
+          this.results = results;
+          console.log(results);
+          this.router.navigate(['/show/' + results[0].title])
+          });
+    }
 
-
- 
-  constructor(
-    private http: HttpClient
-  ) { }
- 
-  ngOnInit() {
-    this.searchMoviesCtrl.valueChanges
-      .pipe(
-        debounceTime(500),
-        tap(() => {
-          this.errorMsg = "";
-          this.filteredMovies = [];
-          this.isLoading = true;
-        }),
-        switchMap(value => this.http.get("http://www.omdbapi.com/?apikey=96e36df0=" + value, { headers: this.headerDict })
-          .pipe(
-            finalize(() => {
-              this.isLoading = false
-            }),
-          )
-        )
-      )
-      .subscribe(data => {
-        if (data['Search'] == undefined) {
-          this.errorMsg = data['Error'];
-          this.filteredMovies = [];
-        } else {
-          this.errorMsg = "";
-          this.filteredMovies = data['Search'];
-        }
- 
-        console.log(this.filteredMovies);
-      });
-  }
+    test(){
+      console.log(this.model);
+      this._service.searchMovies(this.model).subscribe(results =>
+        {
+        this.results = results;
+        console.log(results['titles'][0]['id']);
+        this.router.navigate(['/show/' + results['titles'][0]['id']])
+        });
+    }
 }
  

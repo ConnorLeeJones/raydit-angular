@@ -26,7 +26,6 @@ export class UserProfileComponent implements OnInit {
   itemsPerPage: number;
   sortBy: string = '';
   loading = false;
-  isFollowing: boolean;
 
 
   constructor(private userService: UserService,
@@ -138,17 +137,16 @@ export class UserProfileComponent implements OnInit {
     console.log('bleh');
     this.userService.addFriend(this.currentUser.id, this.id).subscribe(res => {
       console.log(res)
-      this.isFollowing = true;
       this.getUserFriendIds();
     });
   }
 
   unfollowUser(){
     console.log('bleh');
-    // this.searchService.unfollowArtist(this.id).subscribe(res => {
-    //   console.log(res);
-    //   this.isFollowing = false;
-    // });
+    this.userService.removeFriend(this.currentUser.id, this.id).subscribe(res => {
+      console.log(res)
+      this.getUserFriendIds();
+    });
   }
 
 
