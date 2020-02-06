@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { first } from 'rxjs/operators';
 import { User } from 'src/app/models/user';
+
 import { UserService } from 'src/app/services/user.service';
 
 
@@ -12,6 +13,7 @@ export class HomeComponent {
     constructor(private userService: UserService) { }
 
     ngOnInit() {
+
         this.loading = true;
         console.log('bleh');
         // this.userService.getAll().pipe(first()).subscribe(users => {

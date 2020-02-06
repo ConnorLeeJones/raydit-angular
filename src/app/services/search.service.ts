@@ -20,7 +20,7 @@ const headerDict = {
 
 const imdbHeaders = {
   'x-rapidapi-host': 'imdb-internet-movie-database-unofficial.p.rapidapi.com',
-  'x-rapidapi-key': environment.imdbKey
+  'x-rapidapi-key': key
 }
 
 
@@ -97,6 +97,8 @@ export class SearchService {
 
     return this.http.get<Artist[]>(`${environment.apiUrl}/users/search?searchTerm=` + term);
   }
+
+  
 
 
 

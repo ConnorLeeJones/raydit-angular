@@ -1,6 +1,15 @@
 <div *ngIf="user" class="card mt-4 bg-light">
   <div class="card-body">
     <div>{{user.username}}'s profile</div>
+
+    <div *ngIf="!isCurrentUser()">
+      <button *ngIf="!isAlreadyFollowing(); else isFollowing" type="submit" (click)="followUser()" class="btn btn-dark">Follow</button>
+    </div>
+
+    <ng-template #isFollowing>
+        <button type="submit" (click)="unfollowUser()" class="btn btn-dark">Unfollow</button>
+      </ng-template>
+
     <hr>
 
     <nav class="navbar navbar-light bg-light">
@@ -40,6 +49,8 @@
       <!-- <div *ngIf="!loading else loadingPage"> -->
       <app-user-artist-ratings *ngIf="showArtists()" [(ratings)]="ratings"></app-user-artist-ratings>
       <app-user-album-ratings *ngIf="showAlbums()" [(ratings)]="ratings"></app-user-album-ratings>
+      <app-user-movie-ratings *ngIf="showMovies()" [(ratings)]="ratings"></app-user-movie-ratings>
+
       </div>
 
     <!-- </div> -->
