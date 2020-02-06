@@ -1,10 +1,12 @@
 <div *ngIf="user" class="card mt-4 bg-light">
   <div class="card-body">
-    <div>{{user.username}}'s profile</div>
+    <div>{{user.username}}'s profile<span>
 
     <div *ngIf="!isCurrentUser()">
       <button *ngIf="!isAlreadyFollowing(); else isFollowing" type="submit" (click)="followUser()" class="btn btn-dark">Follow</button>
     </div>
+  </span>
+  </div>
 
     <ng-template #isFollowing>
         <button type="submit" (click)="unfollowUser()" class="btn btn-dark">Unfollow</button>

@@ -68,6 +68,11 @@ export class UserService {
     }
 
 
+    removeFriend(userId: number, friendId: number){
+        return this.http.delete(`${environment.apiUrl}/friends/delete?userId=` + userId + '&friendId=' + friendId, {});
+    }
+
+
 
     getUserPaginatedRatings(selected: string, id: number, pageNo: number, sortBy: string){
         return this.http.get(`${environment.apiUrl}/` + selected + `/ratings?id=` + id + '&pageNo=' + pageNo + '&sortBy=' + sortBy);
