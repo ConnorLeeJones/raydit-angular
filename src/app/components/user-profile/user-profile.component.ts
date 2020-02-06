@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 
 @Component({
@@ -14,7 +15,9 @@ export class UserProfileComponent implements OnInit {
   selected: string;
   id: number;
   user: User;
-  options = ["Artists", "Albums"];
+  currentUser: User;
+  options = ["Artists", "Albums", "Movies/TV"];
+  friendIds: number[];
 
   page: number = 1;
   ratings: Array<any>;  
@@ -23,13 +26,16 @@ export class UserProfileComponent implements OnInit {
   itemsPerPage: number;
   sortBy: string = '';
   loading = false;
+  isFollowing: boolean;
 
 
   constructor(private userService: UserService,
-    private route: ActivatedRoute) {}
+    private route: ActivatedRoute, private authenticationService: AuthenticationService) {}
 
   ngOnInit() {
     this.id = +this.route.snapshot.paramMap.get('id');
+    this.getUserFriendIds();
+    this.currentUser = this.authenticationService.currentUserValue;
     this.userService.getuserById(this.id).subscribe(user => this.user = user);
     this.selected = this.options[0];
     this.switchSelection(this.selected);
@@ -59,9 +65,17 @@ export class UserProfileComponent implements OnInit {
     return (this.ratings && this.ratings[0]['album'])
   }
 
+  showMovies(){
+    return (this.ratings && this.ratings[0]['movie'])
+  }
+
   getRatings(){
     this.loading = true;
-    this.userService.getUserPaginatedRatings(this.selected.toLocaleLowerCase(), this.id, this.page - 1, this.sortBy).subscribe(data =>
+    let option = this.selected.toLocaleLowerCase();
+    if (option === "movies/tv"){
+      option = 'movies';
+    }
+    this.userService.getUserPaginatedRatings(option, this.id, this.page - 1, this.sortBy).subscribe(data =>
       {
         if (data !== null){
           console.log(data);
@@ -102,6 +116,39 @@ export class UserProfileComponent implements OnInit {
     else if (choice === 'Name')
     this.sortBy = 'name';
     this.getRatings();
+  }
+
+
+  getUserFriendIds(){
+    this.userService.getUserFriendIds().subscribe(ids =>{ 
+      this.friendIds = ids;
+      console.log(this.friendIds);
+    });
+  }
+
+  isAlreadyFollowing(){
+    return this.friendIds.includes(this.id);
+  }
+
+  isCurrentUser(){
+    return this.currentUser.id === this.user.id;
+  }
+
+  followUser(){
+    console.log('bleh');
+    this.userService.addFriend(this.currentUser.id, this.id).subscribe(res => {
+      console.log(res)
+      this.isFollowing = true;
+      this.getUserFriendIds();
+    });
+  }
+
+  unfollowUser(){
+    console.log('bleh');
+    // this.searchService.unfollowArtist(this.id).subscribe(res => {
+    //   console.log(res);
+    //   this.isFollowing = false;
+    // });
   }
 
 

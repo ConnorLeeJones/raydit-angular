@@ -25,6 +25,10 @@ import { RecentRatingsComponent } from './components/recent-ratings/recent-ratin
 import { UserMovieRatingsComponent } from './components/user-movie-ratings/user-movie-ratings.component';
 import { MovieProfileComponent } from './components/movie-profile/movie-profile.component';
 import { MovieRatingComponent } from './components/movie-rating/movie-rating.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
+import { MovieSearchComponent } from './components/movie-search/movie-search.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -45,6 +49,7 @@ import { MovieRatingComponent } from './components/movie-rating/movie-rating.com
     UserMovieRatingsComponent,
     MovieProfileComponent,
     MovieRatingComponent,
+    MovieSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +57,10 @@ import { MovieRatingComponent } from './components/movie-rating/movie-rating.com
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     CookieService,
@@ -61,4 +69,7 @@ import { MovieRatingComponent } from './components/movie-rating/movie-rating.com
   ],
   bootstrap: [AppComponent]
 })
+
+// const { search, searchActor, simpleSearch } = require("./lib/search");
+
 export class AppModule { }

@@ -47,7 +47,8 @@ export class SearchBarComponent {
           this.router.navigate(['/artist/' + results[0].id])
           });
     }
-    
+
+
 
 
 

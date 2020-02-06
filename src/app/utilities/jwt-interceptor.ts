@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
+import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from '../services/authentication.service';
+import { map } from 'rxjs/operators';
 
 
 @Injectable()
@@ -20,6 +21,15 @@ export class JwtInterceptor implements HttpInterceptor {
         }
         console.log(request)
 
-        return next.handle(request);
+        return next.handle(request).pipe(
+            map((event: HttpEvent<any>) => {
+                if (event instanceof HttpResponse) {
+                    if (event.status === 403){
+                        this.authenticationService.logout();
+                    }
+                    console.log('event--->>>', event);
+                }
+                return event;
+            }));
     }
 }

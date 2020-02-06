@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { User } from '../models/user';
 import { environment } from 'src/environments/environment';
 import { Rating } from '../models/rating';
@@ -57,6 +57,14 @@ export class UserService {
 
     getUserMovieRatings(id: string) {
         return this.http.get<Rating[]>(`${environment.apiUrl}/user/${id}/movies/ratings`);
+    }
+
+    getUserFriendIds(){
+        return this.http.get<number[]>(`${environment.apiUrl}/friends/user/ids`);
+    }
+
+    addFriend(userId: number, friendId: number){
+        return this.http.post(`${environment.apiUrl}/friends/add?userId=` + userId + '&friendId=' + friendId, {});
     }
 
 
