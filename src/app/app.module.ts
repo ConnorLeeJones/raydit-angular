@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { appRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -29,6 +28,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MovieSearchComponent } from './components/movie-search/movie-search.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FriendRatingsComponent } from './components/friend-ratings/friend-ratings.component';
+import { RecentArtistRatingsComponent } from './components/recent-artist-ratings/recent-artist-ratings.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     UserMovieRatingsComponent,
     MovieProfileComponent,
     MovieRatingComponent,
-    MovieSearchComponent
+    MovieSearchComponent,
+    FriendRatingsComponent,
+    RecentArtistRatingsComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +64,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatInputModule,
     MatAutocompleteModule,
     BrowserAnimationsModule,
+  ],
+  exports: [
+    RecentArtistRatingsComponent
   ],
   providers: [
     CookieService,
