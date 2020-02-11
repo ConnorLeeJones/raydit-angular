@@ -1,4 +1,5 @@
-<div *ngIf="user" class="card mt-4 bg-light">
+<div *ngIf="friendIds; else noFriends">
+<div *ngIf="ratings" class="card mt-4 bg-light">
   <div class="card-body">
     <div>Recent ratings by users you follow:</div>
 
@@ -16,14 +17,6 @@
       <div>
         <ul class="navbar-nav ml-auto">
           <li *ngIf="ratings?.length" class="nav-item" ngbDropdown display="dynamic">
-            <!-- <a class="nav-link" style="cursor: pointer" ngbDropdownToggle id="navbarDropdown2" role="button">
-              Sort
-            </a>
-            <div ngbDropdownMenu aria-labelledby="navbarDropdown2" class="dropdown-menu">
-              <a ngbDropdownItem (click)="sort($event)">Rating</a>
-              <a ngbDropdownItem (click)="sort($event)">Recent</a>
-              <a ngbDropdownItem (click)="sort($event)">Name</a>
-            </div> -->
           </li>
         </ul>
       </div>
@@ -38,14 +31,11 @@
       </div>
 
 
-      <!-- <div *ngIf="!loading else loadingPage"> -->
       <app-recent-artist-ratings *ngIf="showArtists()" [(ratings)]="ratings"></app-recent-artist-ratings>
-      <app-user-album-ratings *ngIf="showAlbums()" [(ratings)]="ratings"></app-user-album-ratings>
-      <app-user-movie-ratings *ngIf="showMovies()" [(ratings)]="ratings"></app-user-movie-ratings>
+      <app-recent-album-ratings *ngIf="showAlbums()" [(ratings)]="ratings"></app-recent-album-ratings>
+      <app-recent-movie-ratings *ngIf="showMovies()" [(ratings)]="ratings"></app-recent-movie-ratings>
 
       </div>
-
-    <!-- </div> -->
     </div>
   </div>
 
@@ -62,4 +52,17 @@
     <h6 class="card-header">No recent {{selected.toLowerCase()}} ratings to show.</h6>
   </ng-template>
 
+
+
+
 </div>
+
+<ng-template #noFriends>
+    <div class="card mt-4 bg-light">
+        <div class="card-body">
+    <h6 class="card-header">You haven't followed any users yet. Follow other users to see what they're rating! </h6>
+    </div>
+    </div>
+  </ng-template>
+</div>
+
