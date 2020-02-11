@@ -1,0 +1,37 @@
+
+  .star {
+    font-size: 0.75rem;
+    color: #b0c4de;
+  }
+  .filled {
+    color: gold;
+  }
+
+  .float-right {
+    padding: 0;
+    float: right;
+    position: relative;
+}
+
+a {
+    text-decoration: underline;
+  }
+
+
+  /deep/ .pagination .page-item .page-link {
+    border-radius: 0 !important;
+  }
+  
+  /deep/ .pagination .page-link {
+    border-top-style: bold !important;
+    border-bottom-style: bold !important;
+    background-color: #f6f6f6 !important;
+    color: black !important;
+  }
+
+  .justify-content-center {
+    display: flex !important;
+    justify-content: center !important;
+}
+
+    

@@ -8,6 +8,7 @@ import { ArtistProfileComponent } from './components/artist-profile/artist-profi
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { AlbumProfileComponent } from './components/album-profile/album-profile.component';
 import { MovieProfileComponent } from './components/movie-profile/movie-profile.component';
+import { FriendRatingsComponent } from './components/friend-ratings/friend-ratings.component';
 
 
 
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'album/:id', component: AlbumProfileComponent },
   { path: 'show/:id', component: MovieProfileComponent },
   { path: 'user/:id', component: UserProfileComponent },
+  { path: 'user/:id/following', component: FriendRatingsComponent },
 
 
   // otherwise redirect to home

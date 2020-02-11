@@ -1,0 +1,65 @@
+<div *ngIf="user" class="card mt-4 bg-light">
+  <div class="card-body">
+    <div>Recent ratings by users you follow:</div>
+
+    <hr>
+
+    <nav class="navbar navbar-light bg-light">
+      <span class="navbar-brand nav-item" ngbDropdown display="dynamic">
+        <a class="nav-link" style="cursor: pointer" ngbDropdownToggle id="navbarDropdown3" role="button">
+          {{selected}}
+        </a>
+        <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu">
+          <a ngbDropdownItem *ngFor="let option of options" (click)="getSelected($event)">{{option}}</a>
+        </div>
+      </span>
+      <div>
+        <ul class="navbar-nav ml-auto">
+          <li *ngIf="ratings?.length" class="nav-item" ngbDropdown display="dynamic">
+            <!-- <a class="nav-link" style="cursor: pointer" ngbDropdownToggle id="navbarDropdown2" role="button">
+              Sort
+            </a>
+            <div ngbDropdownMenu aria-labelledby="navbarDropdown2" class="dropdown-menu">
+              <a ngbDropdownItem (click)="sort($event)">Rating</a>
+              <a ngbDropdownItem (click)="sort($event)">Recent</a>
+              <a ngbDropdownItem (click)="sort($event)">Name</a>
+            </div> -->
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <hr>
+
+    <div *ngIf="!loading else loadingPage">
+    <div *ngIf="ratings?.length; else noRatings">
+      <div>
+        <ngb-pagination *ngIf="pages.length > 1" class="justify-content-center" [collectionSize]="totalItems" [pageSize]="itemsPerPage"
+          [(page)]="page" [maxSize]="3" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+      </div>
+
+
+      <!-- <div *ngIf="!loading else loadingPage"> -->
+      <app-recent-artist-ratings *ngIf="showArtists()" [(ratings)]="ratings"></app-recent-artist-ratings>
+      <app-user-album-ratings *ngIf="showAlbums()" [(ratings)]="ratings"></app-user-album-ratings>
+      <app-user-movie-ratings *ngIf="showMovies()" [(ratings)]="ratings"></app-user-movie-ratings>
+
+      </div>
+
+    <!-- </div> -->
+    </div>
+  </div>
+
+  <ng-template #loadingPage>
+    <hr>
+      <div class="d-flex justify-content-center">
+          <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+  </ng-template>
+
+  <ng-template #noRatings>
+    <h6 class="card-header">No recent {{selected.toLowerCase()}} ratings to show.</h6>
+  </ng-template>
+
+</div>
