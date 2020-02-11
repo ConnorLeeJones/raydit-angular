@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'album/:id', component: AlbumProfileComponent },
   { path: 'show/:id', component: MovieProfileComponent },
   { path: 'user/:id', component: UserProfileComponent },
-  { path: 'user/:id/following', component: FriendRatingsComponent },
+  { path: 'following', component: FriendRatingsComponent },
 
 
   // otherwise redirect to home

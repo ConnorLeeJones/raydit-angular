@@ -30,6 +30,8 @@ import { MovieSearchComponent } from './components/movie-search/movie-search.com
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FriendRatingsComponent } from './components/friend-ratings/friend-ratings.component';
 import { RecentArtistRatingsComponent } from './components/recent-artist-ratings/recent-artist-ratings.component';
+import { RecentAlbumRatingsComponent } from './components/recent-album-ratings/recent-album-ratings.component';
+import { RecentMovieRatingsComponent } from './components/recent-movie-ratings/recent-movie-ratings.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { RecentArtistRatingsComponent } from './components/recent-artist-ratings
     MovieRatingComponent,
     MovieSearchComponent,
     FriendRatingsComponent,
-    RecentArtistRatingsComponent
+    RecentArtistRatingsComponent,
+    RecentAlbumRatingsComponent,
+    RecentMovieRatingsComponent
   ],
   imports: [
     BrowserModule,

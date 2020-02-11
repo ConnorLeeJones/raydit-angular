@@ -1,0 +1,27 @@
+<table *ngIf="ratings" class="table table-bordered table-striped table-dark">
+        <tbody>
+            <tr *ngFor="let rating of ratings">
+    
+                <td>
+                    <a routerLink="/show/{{rating.movie.id}}">
+                        <img class="poster" src="{{rating.movie.poster}}">
+                    </a>
+                </td>
+    
+                <td>
+                        <a routerLink="/show/{{rating.movie.id}}"> {{rating.movie.title}} </a>
+                        <div>
+                        <ngb-rating [(rate)]="rating.rating" [readonly]="true">
+                            <ng-template let-fill="fill" let-index="index">
+                                <span class="star" [class.filled]="fill === 100">&#9733;</span>
+                            </ng-template>
+                        </ngb-rating>
+                    </div>
+                    <hr>
+                    <div>Rated by
+                        <span> <a routerLink="/user/{{rating.userProfile.profileId}}">{{rating['userProfile']['username']}}</a></span>
+                        on {{rating['modifiedDate'] | date: 'MM/dd/yyyy'}}</div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
